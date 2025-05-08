@@ -1,14 +1,25 @@
 
 import {VStack, Image, Center, Text, Heading} from "@gluestack-ui/themed"
 
+import {useNavigation} from "@react-navigation/native"
+
+import {AuthnavigatorRoutesProps} from "@routes/auth.routes"
+
 import BackgroundImg from "../assets/background.png"
 import Logo from "@assets/logo.svg"
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
 
 export function SignIn() {
+
+    const navigation = useNavigation<AuthnavigatorRoutesProps>()
+
+    function handleNewAccount() {
+        navigation.navigate("signUp")
+    }
+
     return (
-        <VStack flex={1} bg="$gray700">
+        <VStack flex={1}>
             <Image 
                 source={BackgroundImg} 
                 alt="pessoas treinando"
@@ -37,7 +48,11 @@ export function SignIn() {
 
                 <Center flex={1} justifyContent="flex-end" mt="$4">
                     <Text color="$gray100" fontSize="$sm" mb="$3" fontFamily="$body">Ainda não tem cadastro?</Text>
-                    <Button title="Criar" variant="outline"/>
+                    <Button 
+                        title="Criar conta" 
+                        variant="outline"
+                        onPress={handleNewAccount}
+                    />
                 </Center>
 
             </VStack>
