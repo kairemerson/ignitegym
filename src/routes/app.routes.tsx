@@ -14,9 +14,11 @@ import { Exercise } from "@screens/Exercise"
 
 type AppRoutes = {
     home: undefined
-    exercise: undefined
+    exercise: {exerciseId: string}
     profile: undefined
-    history: undefined
+    history: {
+        createWeekExercisesAmount?: boolean
+    }
 }
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
@@ -62,7 +64,12 @@ export function AppRoutes() {
             <Screen 
                 name="exercise" 
                 component={Exercise} 
-                options={{tabBarButton: ()=> null}}
+                options={{
+                    tabBarButton: ()=> null,
+                    tabBarItemStyle: {
+                        display: "none"
+                    }
+                }}
             />
         </Navigator>
     )
